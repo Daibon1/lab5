@@ -6,18 +6,18 @@ use PDO;
 use PDOException;
 
 class BaseModel {
-    protected $conn;
+    protected $pdo;
 
     public function __construct() {
         try {
-            $this->conn = new PDO(
+            $this->pdo = new PDO(
                 "mysql:host=localhost;dbname=buoi2_php;charset=utf8",
                 "root",
                 ""
             );
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            die("Lỗi kết nối DB: " . $e->getMessage());
+            die("Kết nối DB lỗi: " . $e->getMessage());
         }
     }
 }
